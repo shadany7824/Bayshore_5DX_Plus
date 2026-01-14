@@ -158,5 +158,26 @@ export default class ResourceModule extends Module {
 			// Send the response to the client
             common.sendResponse(message, res);
 		})
+
+        // Car Summary Count
+        app.get('/resource/car_summary_count', async (req, res) => {
+
+            // Try Catch
+			try
+			{
+                let summary: wm.wm5.protobuf.CarSummaryCount.SearchCount[] = [];
+                
+                // Encode the response
+                let message = wm.wm5.protobuf.CarSummaryCount.encode({summary});
+
+                // Send the response to the client
+                common.sendResponse(message, res);
+            }
+            catch(e)
+            {
+                // Internal Server Error
+                res.sendStatus(500);
+            }
+        })
     }
 }
