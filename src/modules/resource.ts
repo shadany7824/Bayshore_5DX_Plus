@@ -159,19 +159,16 @@ export default class ResourceModule extends Module {
             common.sendResponse(message, res);
 		})
 
-        // Car Summary Count
+        // Car Summary Count (Edited to prevent build errors)
         app.get('/resource/car_summary_count', async (req, res) => {
-
-            // Try Catch
-			try
-			{
-                let summary: wm.wm5.protobuf.CarSummaryCount.SearchCount[] = [];
-                
-                // Encode the response
-                let message = wm.wm5.protobuf.CarSummaryCount.encode({summary});
-
-                // Send the response to the client
-                common.sendResponse(message, res);
+            try
+            {
+                /* DEACTIVATED: This specific model is missing from wm5.proto 
+                   in this repository version. Commenting out to allow the 
+                   server to compile.
+                */
+                console.log('car_summary_count: Feature currently disabled due to missing proto members');
+                res.sendStatus(404);
             }
             catch(e)
             {
